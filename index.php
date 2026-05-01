@@ -2,8 +2,8 @@
 // Настройки подключения к БД
 $host = 'localhost';
 $dbname = 'form_db';
-$username = 'app_user';
-$password = 'strong_password';
+$username = 'user1';
+$password = '123';
 
 // Подключение PDO
 try {
