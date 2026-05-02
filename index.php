@@ -186,7 +186,14 @@ $savedCookies = [
     'languages' => isset($_COOKIE['saved_languages']) ? explode(',', $_COOKIE['saved_languages']) : [],
     'contract_agreed' => ($_COOKIE['saved_contract'] ?? '') === '1'
 ];
-
+if (isset($_COOKIE['form_errors'])) {
+    $errors = unserialize($_COOKIE['form_errors']);
+    setcookie('form_errors', '', time() - 3600, '/'); // удаляем
+}
+if (isset($_COOKIE['old_input'])) {
+    $oldInput = unserialize($_COOKIE['old_input']);
+    setcookie('old_input', '', time() - 3600, '/');
+}
 // Приоритет: старые введённые (при ошибке) > сохранённые cookies > пусто
 function getFieldValue($fieldName, $oldInput, $savedCookies) {
     if (!empty($oldInput[$fieldName])) {
